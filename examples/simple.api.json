@@ -1,0 +1,90 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Simple example",
+    "description": "An API for 'A simple example form'",
+    "version": "0.0.1"
+  },
+  "servers": [
+    {
+      "url": "https://api.simple.service.gov.uk/alpha",
+      "description": "Alpha url"
+    },
+    {
+      "url": "https://staging.api.simple.service.gov.uk/alpha",
+      "description": "Optional server description, e.g. Internal staging server for testing"
+    }
+  ],
+  "paths": {
+    "/submission": {
+      "post": {
+        "summary": "Submit form data",
+        "requestBody": {
+          "description": "Optional description in *Markdown*",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Submission"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Created"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Submission": {
+        "type": "object",
+        "required": [
+          "adult",
+          "email",
+          "name"
+        ],
+        "properties": {
+          "name": {
+            "type": "string"
+          },
+          "email": {
+            "type": "string"
+          },
+          "adult": {
+            "type": "string",
+            "enum": [
+              "yes",
+              "no"
+            ]
+          }
+        }
+      },
+      "Created": {
+        "allOf": [
+          {
+            "type": "object",
+            "required": [
+              "ref"
+            ],
+            "properties": {
+              "ref": {
+                "type": "string"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

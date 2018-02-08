@@ -1,0 +1,26 @@
+{
+  "name": "simplest",
+  "heading": "Simplest example",
+  "pages": {
+    "index": {
+      "pagetype": "start-page",
+      "heading": "Simplest",
+      "next": "name"
+    },
+    "name": {
+      "pagetype": "question",
+      "heading": "What is your name?",
+      "fields": ["name"],
+      "next": "complete"
+    },
+    "complete": {
+      "pagetype": "application-complete",
+      "heading": "Application complete"
+    }
+  },
+  "fields": {
+    "name": {
+        "inputtype": "text"
+      }
+  }
+}
