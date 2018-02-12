@@ -1,0 +1,285 @@
+{
+  "openapi": "3.0.0",
+  "info": {
+    "title": "Apply for a military service medal",
+    "description": "An API for ''",
+    "version": "0.0.1"
+  },
+  "servers": [
+    {
+      "url": "https://api.apply-for-a-medal.service.gov.uk/alpha",
+      "description": "Alpha url"
+    },
+    {
+      "url": "https://staging.api.apply-for-a-medal.service.gov.uk/alpha",
+      "description": "Optional server description, e.g. Internal staging server for testing"
+    }
+  ],
+  "paths": {
+    "/submission": {
+      "post": {
+        "summary": "Submit form data",
+        "requestBody": {
+          "description": "Optional description in *Markdown*",
+          "required": true,
+          "content": {
+            "application/json": {
+              "schema": {
+                "$ref": "#/components/schemas/Submission"
+              }
+            }
+          }
+        },
+        "responses": {
+          "201": {
+            "description": "Created",
+            "content": {
+              "application/json": {
+                "schema": {
+                  "$ref": "#/components/schemas/Created"
+                }
+              }
+            }
+          }
+        }
+      }
+    }
+  },
+  "components": {
+    "schemas": {
+      "Submission": {
+        "type": "object",
+        "required": [
+          "ArmyDetails",
+          "HomeGuardDetails",
+          "LPA",
+          "RafDetails",
+          "ReserveForcesDetails",
+          "RoyalMarinesDetails",
+          "RoyalNavyDetails",
+          "active3rdParty",
+          "activeService",
+          "alternativeNames",
+          "applicantName",
+          "applicationPerson",
+          "contactPreference",
+          "deathCertificate",
+          "diedInService",
+          "eldestChild",
+          "eldestGrandchild",
+          "eldestHalfNibling",
+          "eldestHalfSibling",
+          "eldestNibling",
+          "eldestSibling",
+          "email",
+          "endDate",
+          "hasAlternativeNames",
+          "hasAlternativeNamesThirdParty",
+          "hasDeathCertificate",
+          "hasLPA",
+          "hasOtherEvidence",
+          "mobile",
+          "organisations",
+          "otherClosestLivingRelative",
+          "otherEvidence",
+          "otherEvidenceDescription",
+          "phone",
+          "postalAddress",
+          "relationship",
+          "serviceNumber",
+          "servicepersonName",
+          "startDate"
+        ],
+        "properties": {
+          "applicationPerson": {
+            "type": "string",
+            "enum": [
+              "myself",
+              "behalfOfRelative",
+              "relativeOfDeceased"
+            ]
+          },
+          "activeService": {
+            "type": "string",
+            "enum": [
+              "activeServiceRetired",
+              "activeServiceServing"
+            ]
+          },
+          "eldestChild": {
+            "type": "string",
+            "enum": [
+              "yes",
+              "no"
+            ]
+          },
+          "eldestSibling": {
+            "type": "string",
+            "enum": [
+              "yes",
+              "no"
+            ]
+          },
+          "eldestHalfSibling": {
+            "type": "string",
+            "enum": [
+              "yes",
+              "no"
+            ]
+          },
+          "eldestGrandchild": {
+            "type": "string",
+            "enum": [
+              "yes",
+              "no"
+            ]
+          },
+          "eldestNibling": {
+            "type": "string",
+            "enum": [
+              "yes",
+              "no"
+            ]
+          },
+          "eldestHalfNibling": {
+            "type": "string",
+            "enum": [
+              "yes",
+              "no"
+            ]
+          },
+          "relationship": {
+            "type": "string",
+            "enum": [
+              "spouse",
+              "child",
+              "father",
+              "mother",
+              "sibling",
+              "halfSibling",
+              "grandfather",
+              "grandmother",
+              "grandChild",
+              "nibling",
+              "halfNibling"
+            ]
+          },
+          "otherClosestLivingRelative": {
+            "type": "string",
+            "enum": [
+              "no",
+              "yes"
+            ]
+          },
+          "organisations": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "serviceNumber": {
+            "type": "string"
+          },
+          "startDate": {
+            "type": "string"
+          },
+          "endDate": {
+            "type": "string"
+          },
+          "active3rdParty": {
+            "type": "string",
+            "enum": [
+              "retired",
+              "serving"
+            ]
+          },
+          "servicepersonName": {
+            "type": "string"
+          },
+          "applicantName": {
+            "type": "string"
+          },
+          "hasAlternativeNames": {
+            "type": "string",
+            "enum": [
+              "yes",
+              "no"
+            ]
+          },
+          "hasAlternativeNamesThirdParty": {
+            "type": "string",
+            "enum": [
+              "yes",
+              "no",
+              "notsure"
+            ]
+          },
+          "email": {
+            "type": "string"
+          },
+          "phone": {
+            "type": "string"
+          },
+          "mobile": {
+            "type": "string"
+          },
+          "contactPreference": {
+            "type": "array",
+            "items": {
+              "type": "string"
+            }
+          },
+          "postalAddress": {
+            "type": "string"
+          },
+          "diedInService": {
+            "type": "string",
+            "enum": [
+              "yes",
+              "no"
+            ]
+          },
+          "hasLPA": {
+            "type": "string",
+            "enum": [
+              "yes",
+              "no"
+            ]
+          },
+          "hasDeathCertificate": {
+            "type": "string",
+            "enum": [
+              "yes",
+              "no"
+            ]
+          },
+          "hasOtherEvidence": {
+            "type": "string",
+            "enum": [
+              "yes",
+              "no"
+            ]
+          },
+          "otherEvidenceDescription": {
+            "type": "string"
+          }
+        }
+      },
+      "Created": {
+        "allOf": [
+          {
+            "type": "object",
+            "required": [
+              "ref"
+            ],
+            "properties": {
+              "ref": {
+                "type": "string"
+              }
+            }
+          }
+        ]
+      }
+    }
+  }
+}

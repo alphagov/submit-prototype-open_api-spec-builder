@@ -11,6 +11,14 @@ describe "It runs" do
 
     expect(actual).to eq(expected)
   end
+
+  it "generates an Open API spec from a real form" do
+    input = File.read("examples/apply-for-a-medal.json")
+    expected = JSON.parse(File.read("examples/apply-for-a-medal.api.json"))
+    actual = Swaggerise.new(input).run
+
+    expect(actual).to eq(expected)
+  end
 end
 
 describe Swaggerise do

@@ -1,11 +1,6 @@
 require "jbuilder"
 require "json"
 
-def jbuild(*args, &block)
-  Jbuilder.new(*args, &block).attributes!
-end
-
-
 class Swaggerise
 
   attr :form
@@ -112,6 +107,10 @@ class Swaggerise
     required_fields.sort
   end
 
+  def inputtype_textarea(json, _)
+    json.type "string"
+  end
+
   def inputtype_text(json, _)
     json.type "string"
   end
@@ -119,5 +118,21 @@ class Swaggerise
   def inputtype_radio(json, value)
     json.type "string"
     json.enum value.items.map(&:value)
+  end
+
+  def inputtype_checkboxes(json, value)
+    json.type "array"
+    json.items do
+      json.type "string"
+    end
+  end
+
+  def inputtype_fieldset(json, value)
+  end
+
+  def inputtype_list(json, value)
+  end
+
+  def inputtype_image(json, value)
   end
 end
