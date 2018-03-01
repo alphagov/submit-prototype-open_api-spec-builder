@@ -1,4 +1,4 @@
-Submit Prototype OpenAPI generator - Swaggerise
+Submit Prototype OpenAPI generator
 ===============================================
 
 A prototype tool to convert a JSON version of the
@@ -8,4 +8,4 @@ A prototype tool to convert a JSON version of the
 Useage
 ------
 
-    $ bin/swaggerise.rb example/apply-for-a-medal.json
+    $ bin/to_openapi.rb example/apply-for-a-medal.json

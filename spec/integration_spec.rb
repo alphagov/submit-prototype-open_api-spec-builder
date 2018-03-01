@@ -1,13 +1,13 @@
 require "rspec"
 
-require_relative "../lib/swaggerise"
+require_relative "../lib/open_api_spec_builder"
 
 describe "It runs" do
 
   it "generates an Open API spec from a simple form" do
     input = File.read("examples/simple.json")
     expected = JSON.parse(File.read("examples/simple.api.json"))
-    actual = Swaggerise.new(input).run
+    actual = OpenAPISpecBuiler.new(input).run
 
     expect(actual).to eq(expected)
   end
@@ -15,13 +15,13 @@ describe "It runs" do
   it "generates an Open API spec from a real form" do
     input = File.read("examples/apply-for-a-medal.json")
     expected = JSON.parse(File.read("examples/apply-for-a-medal.api.json"))
-    actual = Swaggerise.new(input).run
+    actual = OpenAPISpecBuiler.new(input).run
 
     expect(actual).to eq(expected)
   end
 end
 
-describe Swaggerise do
+describe OpenAPISpecBuiler do
   context "#inputtype_text" do
     it "generates a JSON snipper" do
       value = {
@@ -30,9 +30,9 @@ describe Swaggerise do
 
       expected = { "type" => "string" }
 
-      swaggerise = Swaggerise.new
+      open_api = OpenAPISpecBuiler.new
       result = Jbuilder.new do |json|
-        swaggerise.inputtype_text(json, value)
+        open_api.inputtype_text(json, value)
       end.attributes!
 
       expect(result).to eq(expected)
@@ -59,9 +59,9 @@ describe Swaggerise do
         "enum" => [ "yes", "no" ]
       }
 
-      swaggerise = Swaggerise.new(value)
+      open_api = OpenAPISpecBuiler.new(value)
       result = Jbuilder.new do |json|
-        swaggerise.inputtype_radio(json, swaggerise.form.adult)
+        open_api.inputtype_radio(json, open_api.form.adult)
       end.attributes!
 
       expect(result).to eq(expected)

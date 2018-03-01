@@ -1,7 +1,7 @@
 require "jbuilder"
 require "json"
 
-class Swaggerise
+class OpenAPISpecBuiler
 
   attr :form
 
